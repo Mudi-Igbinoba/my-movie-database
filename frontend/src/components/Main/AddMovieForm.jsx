@@ -4,6 +4,9 @@ const AddMovieForm = () => {
     const [movies, setMovies] = useState([]);
     const [newMovie, setNewMovie] = useState({
         title: '',
+        genre: '',
+        plot: '',
+        releaseDate: '',
         personalRating: '',
         notes: '',
     });
@@ -24,7 +27,7 @@ const AddMovieForm = () => {
             onSubmit={handleSubmit}
             action=''
             className='py-5 grid gap-4 md:grid-cols-2 grid-cols-1 text-center'>
-            <div className='name'>
+            <div>
                 <label
                     htmlFor='title'
                     className='font-limeLight text-indigo-100 text-xl tracking-wide'>
@@ -45,6 +48,24 @@ const AddMovieForm = () => {
 
             <div>
                 <label
+                    htmlFor='genre'
+                    className='font-limeLight text-indigo-100 text-xl tracking-wide'>
+                    Genre
+                </label>
+                <br />
+
+                <input
+                    className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
+                    type='text'
+                    name='genre'
+                    id='genre'
+                    onChange={handleChange}
+                    required
+                    placeholder='Genre of the movie'
+                />
+            </div>
+            <div>
+                <label
                     htmlFor='personalRating'
                     className='font-limeLight text-indigo-100 text-xl tracking-wide'>
                     Your Personal Rating
@@ -62,6 +83,43 @@ const AddMovieForm = () => {
                     onChange={handleChange}
                     placeholder='Rate it between 1 and 5'
                 />
+            </div>
+
+            <div>
+                <label
+                    htmlFor='releaseDate'
+                    className='font-limeLight text-indigo-100 text-xl tracking-wide'>
+                    Genre
+                </label>
+                <br />
+
+                <input
+                    className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
+                    type='number'
+                    name='releaseDate'
+                    id='releaseDate'
+                    onChange={handleChange}
+                    required
+                    placeholder='Release date of the movie'
+                />
+            </div>
+
+            <div className=''>
+                <label
+                    htmlFor='plot'
+                    className='font-limeLight text-indigo-100 text-xl tracking-wide'>
+                    Plot
+                </label>
+                <br />
+
+                <textarea
+                    className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
+                    name='plot'
+                    id='plot'
+                    required
+                    onChange={handleChange}
+                    placeholder='Plot of the movie'
+                    rows='5'></textarea>
             </div>
 
             <div className=''>
@@ -84,7 +142,7 @@ const AddMovieForm = () => {
 
             <button
                 type='submit'
-                className='shadow bg-gold w-[160px] h-[70px] m-auto rounded duration-500 hover:bg-indigo-950'>
+                className='md:col-span-2 shadow bg-gold w-[160px] h-[70px] mx-auto my-5 rounded duration-500 hover:bg-indigo-950'>
                 Add Movie
             </button>
         </form>
