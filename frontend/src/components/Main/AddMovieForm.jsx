@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getMovieData } from './GetMovieData';
 
 const AddMovieForm = () => {
     const [movies, setMovies] = useState([]);
@@ -11,6 +11,9 @@ const AddMovieForm = () => {
         personalRating: '',
         notes: '',
     });
+    const [errMessage, setErrMessage] = useState('');
+    const apiKey = import.meta.env.VITE_APIKEY;
+    const url = `https://www.omdbapi.com/?t=${newMovie.Title}&apikey=${apiKey}`;
 
     const handleChange = (event) => {
         setNewMovie((prevMovie) => ({
@@ -25,50 +28,12 @@ const AddMovieForm = () => {
     };
 
     console.log(movies);
-    const [errMessage, setErrMessage] = useState('');
-    const apiKey = import.meta.env.VITE_APIKEY;
-    const url = `https://www.omdbapi.com/?t=${newMovie.Title}&apikey=${apiKey}`;
 
     useEffect(() => {
-        if (newMovie.Title || newMovie.Year) {
-            const getMovieData = async () => {
-                try {
-                    const response = await axios.get(url);
-                    const movieData = response.data;
-                    console.log(movieData);
-                    if (movieData.Error) {
-                        setErrMessage('Movie not found!');
-                        setNewMovie((prevMovie) => ({
-                            ...prevMovie,
-                            Genre: '',
-                            Plot: '',
-                            Year: '',
-                            id: '',
-                            fullTitle: '',
-                            thumbnail: '',
-                            imdbRating: '',
-                        }));
-                    } else {
-                        setErrMessage();
-                        setNewMovie((prevMovie) => ({
-                            ...prevMovie,
-                            id: movieData.imdbID,
-                            fullTitle: movieData.Title,
-                            Genre: movieData.Genre,
-                            Plot: movieData.Plot,
-                            Year: movieData.Year,
-                            thumbnail: movieData.Poster,
-                            imdbRating: movieData.imdbRating,
-                        }));
-                    }
-                } catch (error) {
-                    console.log(error);
-                    setErrMessage(`${error.message}: check your network`);
-                }
-            };
-            getMovieData();
+        if (newMovie.Title) {
+            getMovieData(url, setErrMessage, setNewMovie);
         }
-    }, [url, newMovie.Title, newMovie.Year]);
+    }, [url, newMovie.Title]);
 
     return (
         <form onSubmit={handleSubmit} action=''>
