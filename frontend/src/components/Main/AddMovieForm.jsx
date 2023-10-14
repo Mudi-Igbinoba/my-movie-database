@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { getMovieData } from './GetMovieData';
+import MoviePoster from './MoviePoster';
 
 const AddMovieForm = () => {
     const [movies, setMovies] = useState([]);
     const [newMovie, setNewMovie] = useState({
-        Title: '',
-        Genre: '',
-        Plot: '',
-        Year: '',
+        title: '',
+        genre: '',
+        plot: '',
+        year: '',
         personalRating: '',
         notes: '',
     });
     const [errMessage, setErrMessage] = useState('');
     const apiKey = import.meta.env.VITE_APIKEY;
-    const url = `https://www.omdbapi.com/?t=${newMovie.Title}&apikey=${apiKey}`;
+    const url = `https://www.omdbapi.com/?t=${newMovie.title}&apikey=${apiKey}`;
 
     const handleChange = (event) => {
         setNewMovie((prevMovie) => ({
@@ -27,44 +28,35 @@ const AddMovieForm = () => {
         setMovies((prevMovies) => [...prevMovies, newMovie]);
     };
 
-    console.log(movies);
+    // console.log(movies);
 
     useEffect(() => {
-        if (newMovie.Title) {
+        if (newMovie.title) {
             getMovieData(url, setErrMessage, setNewMovie);
         }
-    }, [url, newMovie.Title]);
+    }, [url, newMovie.title]);
 
     return (
         <form onSubmit={handleSubmit} action=''>
-            {newMovie.thumbnail === 'N/A' ? (
-                <div className='w-[200px] h-[300px] mx-auto text-center bg-gray-300 flex justify-center items-center text-black'>
-                    <span>No image available</span>
-                </div>
-            ) : newMovie.thumbnail ? (
-                <div
-                    style={{ backgroundImage: `url(${newMovie.thumbnail})` }}
-                    className='w-[200px] h-[300px] mx-auto text-center bg-gray-300 flex justify-center items-center text-black bg-cover bg-center'></div>
-            ) : (
-                <div className='w-[200px] h-[300px] mx-auto text-center bg-gray-300 flex justify-center items-center text-black'>
-                    <span>Poster will appear here</span>
-                </div>
-            )}
+            <MoviePoster
+                title={newMovie.title}
+                thumbnail={newMovie.thumbnail}
+            />
             <div className='py-5 grid gap-4 md:grid-cols-2 grid-cols-1 text-center'>
                 <div>
                     <label
                         htmlFor='title'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        Movie Title
+                        Movie title
                     </label>
                     <br />
 
                     <input
                         className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
                         type='text'
-                        name='Title'
+                        name='title'
                         id='title'
-                        value={newMovie.Title}
+                        value={newMovie.title}
                         onChange={handleChange}
                         required
                         placeholder='The full title of the movie'
@@ -84,11 +76,11 @@ const AddMovieForm = () => {
                     <input
                         className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
                         type='text'
-                        name='Year'
+                        name='year'
                         id='releaseDate'
                         onChange={handleChange}
                         required
-                        value={newMovie.Year}
+                        value={newMovie.year}
                         placeholder='The year the movie was released'
                     />
                 </div>
@@ -97,19 +89,19 @@ const AddMovieForm = () => {
                     <label
                         htmlFor='genre'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        Genre
+                        genre
                     </label>
                     <br />
 
                     <input
                         className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
                         type='text'
-                        name='Genre'
+                        name='genre'
                         id='genre'
                         onChange={handleChange}
-                        value={newMovie.Genre}
+                        value={newMovie.genre}
                         required
-                        placeholder='Genre of the movie'
+                        placeholder='genre of the movie'
                     />
                 </div>
                 <div>
@@ -139,18 +131,18 @@ const AddMovieForm = () => {
                     <label
                         htmlFor='plot'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        Plot
+                        plot
                     </label>
                     <br />
 
                     <textarea
                         className='text-black px-2 py-1.5 mt-2 rounded w-4/5'
-                        name='Plot'
+                        name='plot'
                         id='plot'
                         required
-                        value={newMovie.Plot}
+                        value={newMovie.plot}
                         onChange={handleChange}
-                        placeholder='Plot of the movie'
+                        placeholder='plot of the movie'
                         rows='5'></textarea>
                 </div>
 

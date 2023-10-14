@@ -9,9 +9,9 @@ export const getMovieData = async (url, setErrMessage, setNewMovie) => {
             setErrMessage('Movie not found!');
             setNewMovie((prevMovie) => ({
                 ...prevMovie,
-                Genre: '',
-                Plot: '',
-                Year: '',
+                genre: '',
+                plot: '',
+                year: '',
                 id: '',
                 fullTitle: '',
                 thumbnail: '',
@@ -23,9 +23,9 @@ export const getMovieData = async (url, setErrMessage, setNewMovie) => {
                 ...prevMovie,
                 id: movieData.imdbID,
                 fullTitle: movieData.Title,
-                Genre: movieData.Genre,
-                Plot: movieData.Plot,
-                Year: movieData.Year,
+                genre: movieData.Genre,
+                plot: movieData.Plot,
+                year: movieData.Year,
                 thumbnail: movieData.Poster,
                 imdbRating: movieData.imdbRating,
             }));
