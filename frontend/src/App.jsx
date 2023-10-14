@@ -4,7 +4,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
-import Hero from './components/Main/Hero';
+import Hero from './components/Main/HeroPage/Hero';
 
 function App() {
     return (

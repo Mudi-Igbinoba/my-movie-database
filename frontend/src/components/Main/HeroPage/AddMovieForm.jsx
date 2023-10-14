@@ -37,7 +37,7 @@ const AddMovieForm = () => {
     }, [url, newMovie.title]);
 
     return (
-        <form onSubmit={handleSubmit} action=''>
+        <form onSubmit={handleSubmit} action='' className='animate-fadeIn'>
             <MoviePoster
                 title={newMovie.title}
                 thumbnail={newMovie.thumbnail}
@@ -47,7 +47,7 @@ const AddMovieForm = () => {
                     <label
                         htmlFor='title'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        Movie title
+                        Movie Title
                     </label>
                     <br />
 
@@ -89,7 +89,7 @@ const AddMovieForm = () => {
                     <label
                         htmlFor='genre'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        genre
+                        Genre
                     </label>
                     <br />
 
@@ -131,7 +131,7 @@ const AddMovieForm = () => {
                     <label
                         htmlFor='plot'
                         className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                        plot
+                        Plot
                     </label>
                     <br />
 
