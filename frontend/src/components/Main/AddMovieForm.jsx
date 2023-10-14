@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const AddMovieForm = () => {
     const [movies, setMovies] = useState([]);
@@ -10,6 +11,7 @@ const AddMovieForm = () => {
         personalRating: '',
         notes: '',
     });
+
     const handleChange = (event) => {
         setNewMovie((prevMovie) => ({
             ...prevMovie,
@@ -21,6 +23,26 @@ const AddMovieForm = () => {
         event.preventDefault();
         setMovies((prevMovies) => [...prevMovies, newMovie]);
     };
+
+    const apiKey = import.meta.env.VITE_APIKEY;
+    const url = `https://www.omdbapi.com/?t=${newMovie.title}&y=${newMovie.releaseDate}&apikey=${apiKey}`;
+
+    useEffect(() => {
+        const getMovieData = async () => {
+            try {
+                const response = await axios.get(url);
+                console.log(response.data);
+                // if (response.data.Error) {
+                //     alert(response.data.Error);
+                // }
+            } catch (error) {
+                console.log(error);
+                alert(error);
+            }
+        };
+
+        getMovieData();
+    }, [url]);
 
     return (
         <form
@@ -99,6 +121,7 @@ const AddMovieForm = () => {
                     name='releaseDate'
                     id='releaseDate'
                     onChange={handleChange}
+                    min='1800'
                     required
                     placeholder='The year the movie was released'
                 />
