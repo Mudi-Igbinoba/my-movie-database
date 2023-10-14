@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { GiFilmSpool } from 'react-icons/gi';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { BsXCircle } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,27 +16,27 @@ const Header = () => {
                         id='webMenu'
                         className='flex justify-between items-center'>
                         <li className='sm:text-2xl text-xl animate-trackingInExpand'>
-                            <a
-                                href='/'
+                            <Link
+                                to='/'
                                 className='flex hover:text-gold duration-700'>
                                 <GiFilmSpool className='me-2 sm:text-2xl text-xl text-gold' />
                                 My Movie Database
-                            </a>
+                            </Link>
                         </li>
                         <div className='sm:text-lg sm:flex hidden animate-fadeIn'>
                             <li className='me-5'>
-                                <a
-                                    href='#addMovie'
+                                <HashLink
+                                    to='/#addMovie'
                                     className='hover:text-gold duration-700'>
                                     Add Movie
-                                </a>
+                                </HashLink>
                             </li>
                             <li>
-                                <a
+                                <HashLink
                                     href='#viewMovie'
                                     className='hover:text-gold duration-700'>
                                     View Movies
-                                </a>
+                                </HashLink>
                             </li>
                         </div>
                         <li className='sm:hidden inline animate-fadeIn'>
