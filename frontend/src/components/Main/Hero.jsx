@@ -17,7 +17,7 @@ const Hero = () => {
                     Fill out the form below to add your favorite movie . To get
                     the right data, write out the{' '}
                     <span className='underline text-gold decoration-double underline-offset-4'>
-                        full title of the movie and/or its year of release
+                        full title of the movie
                     </span>{' '}
                     .
                 </p>
