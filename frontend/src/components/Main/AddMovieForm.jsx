@@ -100,7 +100,7 @@ const AddMovieForm = () => {
                     id='releaseDate'
                     onChange={handleChange}
                     required
-                    placeholder='Release date of the movie'
+                    placeholder='The year the movie was released'
                 />
             </div>
 
