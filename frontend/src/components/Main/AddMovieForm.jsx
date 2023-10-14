@@ -89,7 +89,7 @@ const AddMovieForm = () => {
                 <label
                     htmlFor='releaseDate'
                     className='font-limeLight text-indigo-100 text-xl tracking-wide'>
-                    Genre
+                    Release Date
                 </label>
                 <br />
 
