@@ -1,28 +1,59 @@
+import { port, DB } from './utils/config.js';
 import express from 'express';
-import { PORT } from './config.js';
+import mongoose from 'mongoose';
+import moviesRoute from './routes/moviesRoute.js';
+import cors from 'cors';
+import morgan from 'morgan';
+import {
+    requestLogger,
+    unknownEndpoint,
+    errorHandler,
+} from './utils/middleware.js';
+import { info, error } from './utils/logger.js';
 
+// starts express app
 const app = express();
 
-// let movies = [
-//     {
-//         id: 1,
-//         title: 'Adventure Land',
-//         genre: 'Adventure',
-//         plot: 'Idk',
-//         releaseDate: '2020',
-//         personalRating: '4',
-//         notes: 'kdlsdjds',
-//     },
-// ];
+mongoose.set('strictQuery', false);
 
-app.get('/', (request, response) => {
-    response.status(234).send('Hello World!');
+info('connecting to', DB);
+
+mongoose
+    .connect(DB)
+    .then(() => {
+        console.log('App connected to a database');
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+// Middleware for parsing request body
+app.use(express.json());
+// Middleware for CORS policy
+app.use(cors());
+app.use(express.static('build'));
+app.use(express.json());
+app.use(requestLogger);
+
+// Development logging
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+morgan.token('data', (request) => {
+    return request.method === 'POST' ? JSON.stringify(request.body) : ' ';
 });
 
-// app.get('/api/notes', (request, response) => {
-//     response.json(movies);
-// });
+app.use(
+    morgan(
+        ':method :url :status :res[content-length] - :response-time ms :data'
+    )
+);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+//Routes
+app.use('/movies', moviesRoute);
+app.use(unknownEndpoint);
+app.use(errorHandler);
