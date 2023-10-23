@@ -3,19 +3,19 @@ import { GiFilmSpool } from 'react-icons/gi';
 import { HiMenuAlt2 } from 'react-icons/hi';
 import { BsXCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className='bg-indigo-950 text-white font-limeLight uppercase tracking-wider'>
+        <header className='bg-black/90 text-white font-playfair font-semibold tracking-wide'>
             <nav className='py-8 md:px-4 px-6 container mx-auto'>
                 <ul>
                     <div
                         id='webMenu'
                         className='flex justify-between items-center'>
                         <li className='sm:text-2xl text-xl animate-trackingInExpand'>
+                            {/* Logo */}
                             <Link
                                 to='/'
                                 className='flex hover:text-gold duration-700'>
@@ -23,20 +23,22 @@ const Header = () => {
                                 My Movie Database
                             </Link>
                         </li>
+
+                        {/* Menu Links */}
                         <div className='sm:text-lg sm:flex hidden animate-fadeIn'>
                             <li className='me-5'>
-                                <HashLink
-                                    to='/#addMovie'
+                                <Link
+                                    to='/add-movie'
                                     className='hover:text-gold duration-700'>
                                     Add Movie
-                                </HashLink>
+                                </Link>
                             </li>
                             <li>
-                                <HashLink
-                                    href='#viewMovie'
+                                <Link
+                                    to='/movies'
                                     className='hover:text-gold duration-700'>
-                                    View Movies
-                                </HashLink>
+                                    All Movies
+                                </Link>
                             </li>
                         </div>
                         <li className='sm:hidden inline animate-fadeIn'>
@@ -49,25 +51,26 @@ const Header = () => {
                             </button>
                         </li>
                     </div>
+                    {/* Mobile Menu */}
                     {isMenuOpen && (
                         <div
                             id='mobileMenu'
                             className='animate-fadeIn text-lg text-center pt-8 duration-500 sm:hidden block'>
                             <li className='mb-3'>
-                                <a
+                                <Link
                                     onClick={() => setIsMenuOpen(false)}
-                                    href='#addMovie'
+                                    to='/add-movie'
                                     className='hover:text-gold duration-700'>
                                     Add Movie
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     onClick={() => setIsMenuOpen(false)}
-                                    href='#viewMovie'
+                                    to='/movies'
                                     className='hover:text-gold duration-700'>
                                     View Movies
-                                </a>
+                                </Link>
                             </li>
                         </div>
                     )}
