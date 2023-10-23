@@ -8,6 +8,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
+        // Header
         <header className='bg-black/90 text-white font-playfair font-semibold tracking-wide'>
             <nav className='py-8 md:px-4 px-6 container mx-auto'>
                 <ul>
