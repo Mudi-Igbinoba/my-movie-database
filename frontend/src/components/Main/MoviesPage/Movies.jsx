@@ -78,7 +78,7 @@ const Movies = () => {
                         <GiFilmSpool className='mb-5 sm:text-5xl text-4xl animate-pulse text-white' />
 
                         <p className='lg:text-3xl sm:text-2xl text-xl font-semibold'>
-                            No movies added yet! Got to{' '}
+                            No movies added yet! Go to{' '}
                             <Link
                                 to='/add-movie'
                                 className='text-gold underline'>
