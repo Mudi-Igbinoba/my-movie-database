@@ -9,6 +9,9 @@ export default {
             fontFamily: {
                 limeLight: ['Limelight', 'sans-serif'],
                 josefin: ['Josefin Sans', 'sans-serif'],
+                yeseva: ['Yeseva One', 'sans-serif'],
+                abril: ['Abril Fatface', 'sans-serif'],
+                playfair: ['Playfair Display', 'sans-serif'],
             },
             keyframes: {
                 trackingInExpand: {
