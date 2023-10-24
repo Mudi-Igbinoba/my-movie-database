@@ -26,7 +26,10 @@ export const getMovieData = async (url, setNewMovie, setMovieFound) => {
             }));
         } else {
             setMovieFound(true);
-
+            // displays error if movie is not found
+            enqueueSnackbar('Movie found!', {
+                variant: 'success',
+            });
             // gets newMovie from omdb and saves it in the new movie array
             setNewMovie((prevMovie) => ({
                 ...prevMovie,
