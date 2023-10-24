@@ -49,7 +49,7 @@ const SortYear = ({ setMovies, setLoading }) => {
                 style={{
                     textShadow: '2px 2px 4px rgba(0, 0, 0, 1)',
                 }}>
-                Sort by title
+                Sort by year
             </label>{' '}
             <br />
             <select
