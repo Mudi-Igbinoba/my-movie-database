@@ -26,7 +26,7 @@ export const getMovieData = async (url, setNewMovie, setMovieFound) => {
             }));
         } else {
             setMovieFound(true);
-            // displays error if movie is not found
+            // displays success when movie is found
             enqueueSnackbar('Movie found!', {
                 variant: 'success',
             });
