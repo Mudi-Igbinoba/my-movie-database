@@ -12,7 +12,7 @@ const MovieCards = ({ movies, setLoading, setMovies }) => {
 
         // sends a request to the backend to delete based of id
         axios
-            .delete(`http://localhost:5555/movies/${id}`)
+            .delete(`https://my-movie-database-backend.vercel.app/movies/${id}`)
             .then((res) => {
                 // filter the remaining movies
                 setMovies((prevMovies) =>

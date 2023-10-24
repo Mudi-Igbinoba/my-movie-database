@@ -15,7 +15,7 @@ const ViewMovie = () => {
         setLoading(true);
         // sends a request to the backend to get a movie by its id
         axios
-            .get(`http://localhost:5555/movies/${id}`)
+            .get(`https://my-movie-database-backend.vercel.app/movies/${id}`)
             .then((response) => {
                 //sets the movie data
                 setMovie(response.data);

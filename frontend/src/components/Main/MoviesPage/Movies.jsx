@@ -17,7 +17,7 @@ const Movies = () => {
         setLoading(true);
         // sends a request to the backend to grab all the movies
         axios
-            .get('http://localhost:5555/movies/')
+            .get('https://my-movie-database-backend.vercel.app/movies/')
             .then((response) => {
                 // sets movie array to the new movies
                 setMovies(response.data.data);

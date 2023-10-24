@@ -51,7 +51,10 @@ const AddMovie = () => {
         setLoading(true);
         // sends movie data to backend
         axios
-            .post('http://localhost:5555/movies/', newMovie)
+            .post(
+                'https://my-movie-database-backend.vercel.app/movies/',
+                newMovie
+            )
             .then(() => {
                 setLoading(false);
                 setNewMovie({

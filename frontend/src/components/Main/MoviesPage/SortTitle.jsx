@@ -15,7 +15,7 @@ const SortTitle = ({ setMovies, setLoading }) => {
         setLoading(true);
         // sends request to backend to get all movies
         axios
-            .get('http://localhost:5555/movies/')
+            .get('https://my-movie-database-backend.vercel.app/movies/')
             .then((response) => {
                 // displays movies in ascending order by title
                 if (sortOption === 'asc') {

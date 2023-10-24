@@ -16,7 +16,7 @@ const SearchInput = ({ setMovies, setLoading }) => {
         setLoading(true);
         // sends request to backend to get all movies
         axios
-            .get('http://localhost:5555/movies/')
+            .get('https://my-movie-database-backend.vercel.app/movies/')
             .then((response) => {
                 //filters through movie data when search term is changed
                 if (searchTerm) {
